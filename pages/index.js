@@ -16,6 +16,12 @@ export default function Home() {
 
       <Container className={styles.main}>
         <Gallery>
+          <GalleryViewer image="./images/IMG_0260.JPG">
+            <ExpandoOverlay>
+              <GalleryName>FACE PAINTINGS</GalleryName>
+              <Button>VIEW GALLERY</Button>
+            </ExpandoOverlay>
+          </GalleryViewer>
           <GalleryViewer image="./images/IMG_0133.JPG">
             <ExpandoOverlay>
               <GalleryName>FACE PAINTINGS</GalleryName>
@@ -40,12 +46,6 @@ export default function Home() {
               <Button>VIEW GALLERY</Button>
             </ExpandoOverlay>
           </GalleryViewer>
-          <GalleryViewer image="./images/IMG_0260.JPG">
-            <ExpandoOverlay>
-              <GalleryName>FACE PAINTINGS</GalleryName>
-              <Button>VIEW GALLERY</Button>
-            </ExpandoOverlay>
-          </GalleryViewer>
         </Gallery>
       </Container>
     </div>
@@ -58,17 +58,17 @@ const Container = styled.div`
 `;
 const Gallery = styled.div`
   display: grid;
-  grid-gap: 5px;
-  grid-gap: 5px;
+  grid-gap: 40px;
   grid-template-columns: repeat(2, 600px);
 `;
 const GalleryViewer = styled.div`
-  padding: 250px;
+  padding: 320px 100px;
   background-size: cover;
   background-position: center;
   background-image: url(${props => props.image});
   position: relative;
   border-radius: 3px;
+  transition: all 0.3s;
   &:hover {
     &::before {
       content: "";
@@ -92,6 +92,7 @@ const ExpandoOverlay = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s;
   &:hover {
     opacity: 1;
   }
@@ -107,6 +108,11 @@ const Button = styled.button`
   background: none;
   font-family: "Poppins", sans-serif;
   letter-spacing: 3px;
+  transition: all 0.3s;
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
+  }
 `;
 const GalleryName = styled.div`
   font-size: 24px;

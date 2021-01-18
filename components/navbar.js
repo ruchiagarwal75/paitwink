@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-export default function NavBar() {
+export default function NavBar(props) {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -20,7 +20,7 @@ export default function NavBar() {
         textColor="primary"
         centered
       >
-        <StyledTab label="Gallery" />
+        <StyledTab label="Gallery" onClick={props.handleResetGalleryView} />
         <StyledTab label="Shop" />
         <StyledTab label="About" />
         <StyledTab label="Contact" />

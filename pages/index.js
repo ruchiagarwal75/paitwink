@@ -11,9 +11,7 @@ export default function Home() {
     setViewGallery(true);
     setGalleryId(id);
   };
-  const handleResetGalleryView = () => {
-    setViewGallery(false);
-  };
+
   return (
     <>
       <Head>
@@ -24,7 +22,7 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Poppins:wght@300&family=Roboto:wght@100;400&display=swap');
         </style>
       </Head>
-      <Layout handleResetGalleryView={handleResetGalleryView}>
+      <Layout>
         {!viewGallery ? (
           <GalleryList handleViewGallery={handleViewGallery} />
         ) : (

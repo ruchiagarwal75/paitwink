@@ -1,27 +1,45 @@
 import React from "react";
+import _ from "lodash";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
 export default function NavBar(props) {
-  const [value, setValue] = React.useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  const router = useRouter();
+  const pages = [
+    {
+      path: "/",
+      value: 0
+    },
+    {
+      path: "/shop",
+      value: 1
+    }
+  ];
   return (
     <div>
-      <Logo>
+      <Logo
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
         <img src="../images/logo.png"></img>
       </Logo>
       <StyledTabs
-        value={value}
-        onChange={handleChange}
+        value={_.find(pages, p => p.path === router.pathname).value}
         indicatorColor="primary"
         textColor="primary"
         centered
       >
-        <StyledTab label="Gallery" onClick={props.handleResetGalleryView} />
-        <StyledTab label="Shop" />
+        <StyledTab
+          label="Gallery"
+          onClick={() => (window.location.href = "/")}
+        />
+        <StyledTab
+          label="Shop"
+          onClick={() => (window.location.href = "/shop")}
+        />
         <StyledTab label="About" />
         <StyledTab label="Contact" />
       </StyledTabs>

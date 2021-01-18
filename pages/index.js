@@ -3,10 +3,13 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import Layout from "../components/layout";
 import GalleryList from "../components/gallery-list";
+import Gallery from "../components/gallery";
 export default function Home() {
   const [viewGallery, setViewGallery] = useState(false);
-  const handleViewGallery = () => {
+  const [galleryId, setGalleryId] = useState(0);
+  const handleViewGallery = id => {
     setViewGallery(true);
+    setGalleryId(id);
   };
   const handleResetGalleryView = () => {
     setViewGallery(false);
@@ -25,7 +28,7 @@ export default function Home() {
         {!viewGallery ? (
           <GalleryList handleViewGallery={handleViewGallery} />
         ) : (
-          <div>Test</div>
+          <Gallery galleryId={galleryId} />
         )}
       </Layout>
     </>

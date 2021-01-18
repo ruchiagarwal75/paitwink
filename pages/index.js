@@ -1,8 +1,18 @@
+import React from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 import styled from "styled-components";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 export default function Home() {
+  const handleViewGallery = () => {
+    window.location.href = "/gallery";
+  };
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -13,13 +23,28 @@ export default function Home() {
           url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Poppins:wght@300&family=Roboto:wght@100;400&display=swap');
         </style>
       </Head>
+      <Logo>
+        <img src="../images/logo.png"></img>
+      </Logo>
+      <StyledTabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        <StyledTab label="Gallery" />
+        <StyledTab label="Shop" />
+        <StyledTab label="About" />
+        <StyledTab label="Contact" />
+      </StyledTabs>
 
       <Container className={styles.main}>
         <Gallery>
           <GalleryViewer image="./images/IMG_0260.JPG">
             <ExpandoOverlay>
-              <GalleryName>FACE PAINTINGS</GalleryName>
-              <Button>VIEW GALLERY</Button>
+              <GalleryName>FASHION</GalleryName>
+              <Button onClick={handleViewGallery}>VIEW GALLERY</Button>
             </ExpandoOverlay>
           </GalleryViewer>
           <GalleryViewer image="./images/IMG_0133.JPG">
@@ -52,9 +77,22 @@ export default function Home() {
   );
 }
 
+const Logo = styled.div`
+  text-align: center;
+`;
+
+const StyledTabs = styled(Tabs)`
+  margin-bottom: 32px;
+`;
+const StyledTab = styled(Tab)`
+  font-size: 18px;
+`;
 const Container = styled.div`
   font-family: "Poppins", sans-serif;
   letter-spacing: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const Gallery = styled.div`
   display: grid;
@@ -62,7 +100,7 @@ const Gallery = styled.div`
   grid-template-columns: repeat(2, 600px);
 `;
 const GalleryViewer = styled.div`
-  padding: 320px 100px;
+  padding: 300px 50px 300px 50px;
   background-size: cover;
   background-position: center;
   background-image: url(${props => props.image});
@@ -78,6 +116,7 @@ const GalleryViewer = styled.div`
       bottom: 0px;
       left: 0px;
       background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid black;
     }
   }
 `;
